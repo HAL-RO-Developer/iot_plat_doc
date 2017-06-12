@@ -1,10 +1,13 @@
+// includeファイル
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 #include <FS.h>
 
+// APモード時のssidとパスワードの設定
 static const char *ssid = "esp8266";
 static const char *pwd = "8266";
 
+// サーバーポートの指定
 ESP8266WebServer server(80); 
 IPAddress ip( 192, 168, 128, 21); 
 IPAddress subnet( 255, 255, 255, 0 );
@@ -28,7 +31,7 @@ void handleRoot() {
     // テンプレートのindexページ文字列をフラグによって設定
     String msg = "";
     if (!flagGod) {
-      msg = "LEDON";
+      msg = "チェンジ・プライベートモード";
     } else {
        msg = "チェンジ・ビジネスモード！";
     }
@@ -136,7 +139,7 @@ void setup() {
 
   // ハンドラ設定
   server.on("/", handleRoot); 
-  server.on("/img1.gif", handleImg1); 
+  server.on("/img1.gif", handleImg1);
   server.on("/img2.gif", handleImg2); 
 
   server.begin();
