@@ -3,16 +3,20 @@
 #include <ESP8266WebServer.h>
 #include <FS.h>
 
-// APモード時のssidとパスワードの設定
+// ssidとパスワードの設定
 static const char *ssid = "esp8266";
 static const char *pwd = "8266";
 
 // サーバーポートの指定
 ESP8266WebServer server(80); 
+// IPアドレス
 IPAddress ip( 192, 168, 128, 21); 
+// サブネットマスク
 IPAddress subnet( 255, 255, 255, 0 );
 
+// htmlファイルの読み込み場所
 String strIndexHtml;
+// ボタンの状態管理
 boolean flagGod;
 
 // indexページ
@@ -62,7 +66,7 @@ void handleImg2() {
     Serial.println("receive req: /img2.gif");
 
     // リソースから読み込んで画像をかえす。
-     SPIFFS.begin();
+    SPIFFS.begin();
     File hogeFile = SPIFFS.open("/images-2.png", "r");
     // バイナリのリソースを返すならこんな感じ。
     server.streamFile(hogeFile, "image/gif");
@@ -107,7 +111,6 @@ String loadTextFile(String path) {
   Serial.println(path + " is loaded...");
 
   return txt;
-
 }
 
 
@@ -128,9 +131,8 @@ void loadHtmlResource() {
   strIndexHtml = loadTextFile("/index.html");
 }
 
-
-
-void setup() { 
+/* 設定 */
+void setup() {
   flagGod = false;
   Serial.begin(9600);
   WiFi.mode(WIFI_AP); 
