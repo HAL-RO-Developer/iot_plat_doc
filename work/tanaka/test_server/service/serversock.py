@@ -23,13 +23,19 @@ class Serversock:
 		return
 		
 	@staticmethod
-	def accept_loop():
-		print('Ready For Accept')
-		client_sock, client_address = Serversock.server_sock.accept()
+	def accept_loop():		
 		while True:
-			rcvmsg = client_sock.recv(1024)
-			print('Received -> {}'.format(rcvmsg))
+			# クライアントからの接続を待ち受ける
+			clint_sock, (client_address, client_port) = Serversock.server_sock.accept()
+			print('New client: {0}:{1}'.format(client_address, client_port))
+			try:
+				message = client_sock.recv(1024)
+				print('Recv: {}'.format(message))
+			except OSError:
+				break
 			client_sock.send('HELLO') #メッセージを返します
+			print('Send: HELLO')
 		client_sock.close()
+		
 		return
 
