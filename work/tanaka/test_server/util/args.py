@@ -1,4 +1,4 @@
-﻿import argparse
+import argparse
 
 def create_args(**kwargs):
 	parser = argparse.ArgumentParser(description='this is ...')

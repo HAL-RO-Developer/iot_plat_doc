@@ -1,30 +1,35 @@
 import socket
 
-def create_server_socket(host,port):
-    # ƒ\ƒPƒbƒgƒfƒBƒXƒNƒŠƒvƒ^‚ğ¶¬
-	server_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	
-    # ƒ\ƒPƒbƒgƒIƒvƒVƒ‡ƒ“‚Åƒ\ƒPƒbƒg‚ÌÄ—˜—pƒtƒ‰ƒO‚ğON‚Éİ’è
-    # ON‚É‚µ‚Ä‚¢‚È‚¢‚ÆƒNƒ‰ƒCƒAƒ“ƒg‚Æ’ÊM“r’†‚Å’†’f‚µ‚½ê‡“¯‚¶ƒAƒhƒŒƒX‚Æƒ|[ƒg‚ÅƒoƒCƒ“ƒh‚Å‚«‚È‚­‚È‚è‚Ü‚·
-	server_sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    
-	# ƒ\ƒPƒbƒg‚Éƒ|[ƒg”Ô†‚ğƒoƒCƒ“ƒh
-	server_sock.bind((host, port))
-    
-	# ƒAƒNƒZƒXƒoƒbƒNƒƒO(Ú‘±‘Ò‚¿‚ÌƒLƒ…[”)‚ğw’èB
-	server_sock.listen(5)
-	print('Server Run Port:{}\r'.format(port))
-	print('Waiting for connections...')
-    
-	return server_sock
-	
-def accept_loop(server_sock):
-	print('Ready For Accept')
-	client_sock, client_address = server_sock.accept()
-	while True:
-		rcvmsg = client_sock.recv(1024)
-		print('Received -> {}'.format(rcvmsg))
-		client_sock.send('HELLO') #ƒƒbƒZ[ƒW‚ğ•Ô‚µ‚Ü‚·
-	client_sock.close()
-	return
+class Serversock:
+	server_sock = None
+
+	@staticmethod
+	def create_server_socket(host,port):
+		# ã‚½ã‚±ãƒƒãƒˆãƒ‡ã‚£ã‚¹ã‚¯ãƒªãƒ—ã‚¿ã‚’ç”Ÿæˆ
+		Serversock.server_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		
+		# ã‚½ã‚±ãƒƒãƒˆã‚ªãƒ—ã‚·ãƒ§ãƒ³ã§ã‚½ã‚±ãƒƒãƒˆã®å†åˆ©ç”¨ãƒ•ãƒ©ã‚°ã‚’ONã«è¨­å®š
+		# ONã«ã—ã¦ã„ãªã„ã¨ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã¨é€šä¿¡é€”ä¸­ã§ä¸­æ–­ã—ãŸå ´åˆåŒã˜ã‚¢ãƒ‰ãƒ¬ã‚¹ã¨ãƒãƒ¼ãƒˆã§ãƒã‚¤ãƒ³ãƒ‰ã§ããªããªã‚Šã¾ã™
+		Serversock.server_sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+		
+		# ã‚½ã‚±ãƒƒãƒˆã«ãƒãƒ¼ãƒˆç•ªå·ã‚’ãƒã‚¤ãƒ³ãƒ‰
+		Serversock.server_sock.bind((host, port))
+		
+		# ã‚¢ã‚¯ã‚»ã‚¹ãƒãƒƒã‚¯ãƒ­ã‚°(æ¥ç¶šå¾…ã¡ã®ã‚­ãƒ¥ãƒ¼æ•°)ã‚’æŒ‡å®šã€‚
+		Serversock.server_sock.listen(5)
+		print('Server Run Port:{}\r'.format(port))
+		print('Waiting for connections...')
+
+		return
+		
+	@staticmethod
+	def accept_loop():
+		print('Ready For Accept')
+		client_sock, client_address = Serversock.server_sock.accept()
+		while True:
+			rcvmsg = client_sock.recv(1024)
+			print('Received -> {}'.format(rcvmsg))
+			client_sock.send('HELLO') #ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¿”ã—ã¾ã™
+		client_sock.close()
+		return
 
