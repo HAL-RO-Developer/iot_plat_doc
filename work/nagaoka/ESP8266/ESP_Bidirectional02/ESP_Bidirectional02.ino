@@ -1,4 +1,4 @@
-#include <SoftwareSerial.h> // ソフトウェアシリアル
+#include <SoftwareSerial.h> // SoftwareSerial.h
 
 // ポート指定 送信側
 SoftwareSerial mySerial(D1, D2); // 受信側 RX, TX
