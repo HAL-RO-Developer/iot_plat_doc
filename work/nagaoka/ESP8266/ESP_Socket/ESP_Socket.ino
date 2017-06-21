@@ -1,20 +1,17 @@
 #include             <ESP8266WiFi.h>
 #include            <WiFiClient.h>
 
-const int             ledPin                 = 0;
-WiFiClient            client;
-char                s[100];
-// ---------------------------------------------------------------------------
-void setup() {
-int                    i;
-char                ssid[]                = "makki_wifi";
-char                pass[]                = "11111111";
+WiFiClient client;
+char s[100];
 
-int                 status;
-char                testStr[]            = "The Quick Brown Fox Jumps Over the Lazy Dog";
+void setup() {
+int i;
+char ssid[] = "********";
+char pass[] = "********";
+
+int   status;
 
 Serial.begin(115200);
-pinMode(ledPin, OUTPUT);
 Serial.println("");
 Serial.print("Tryingonnect to ");
 Serial.println(ssid);
@@ -38,7 +35,6 @@ client.println("connect!!");
 // client.read()
 } // setup
 
-// ---------------------------------------------------------------------------
 void loop() {
     if(client.available()){
         wifi_read(&s[0]);
