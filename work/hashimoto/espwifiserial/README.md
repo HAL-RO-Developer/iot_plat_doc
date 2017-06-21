@@ -1,0 +1,11 @@
+# espwifiserial.ino
+- Serial.println(WiFi.localIP());
+ - IPアドレス表示
+- Serial.println(WiFi.SSID());
+ - 接続先SSID表示
+- Serial.println(WiFi.psk());
+ - 接続先Password表示
+- Serial.printf("RSSI: %d dBm\n", WiFi.RSSI());
+ - Wifi電波強度表示
+- Serial.printf("BSSID: %s\n", WiFi.BSSIDstr().c_str());
+ - BSSID表示
