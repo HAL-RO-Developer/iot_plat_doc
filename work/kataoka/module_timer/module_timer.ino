@@ -2,8 +2,6 @@
  * モジュール応答時間計測プログラム
  */
 
-#define LED_PIN 4
-
 void setup() {
 }
 
@@ -13,6 +11,7 @@ void loop() {
   /*
    * モジュール実行処理
    */
+   
   Serial.println(timer()); // モジュール実行後に結果をシリアルモニターに表示
   
 }
