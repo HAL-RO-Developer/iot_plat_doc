@@ -2,28 +2,26 @@
  * モジュール応答時間計測プログラム
  */
 
-#define SW_PIN 14
-
-unsigned long time1;
-unsigned long time2;
-unsigned long result;
+#define LED_PIN 4
 
 void setup() {
-  Serial.begin(115200);
-
-  pinMode(SW_PIN,INPUT);
 }
 
 void loop() {
+  timer(); // モジュール実行前に呼び出す
 
+  /*
+   * モジュール実行処理
+   */
+  Serial.println(timer()); // モジュール実行後に結果をシリアルモニターに表示
   
-  if(digitalRead(SW_PIN) == HIGH){
-    time1 = micros();
-    while(digitalRead(SW_PIN) == HIGH){}
-  }else{
-    time2 = micros();
-    result = time2 - time1;
-    Serial.println(result);
-  }
-  
+}
+
+/* 計測関数 */
+int timer (){
+  static int beforeTime = 0;
+  int nowTime = micros();
+  int resultTime = nowTime-beforeTime; 
+  beforeTime = nowTime;
+  return resultTime;
 }
