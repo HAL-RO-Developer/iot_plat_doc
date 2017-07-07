@@ -2,7 +2,7 @@
 #include "DeviceControl.h"
 
 
-void Digital::pinMode(int pin, int mode)
+void Digital::SetMode(int pin, int mode)
 {
 	pinMode(pin, mode);
 }
