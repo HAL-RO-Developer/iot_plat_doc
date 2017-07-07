@@ -1,0 +1,9 @@
+---------------------------------------------------------------------
+DeviceControl KEYWORD1
+Digital	KEYWORD1
+Analog	KEYWORD1
+
+pinMode	KEYWORD2
+Write	KEYWORD2
+Read	KEYWORD2
+---------------------------------------------------------------------
