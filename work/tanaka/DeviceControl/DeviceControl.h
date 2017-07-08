@@ -4,7 +4,7 @@
 
 class Digital{
 	public:
-		static void pinMode(int pin, int mode);
+		static void SetMode(int pin, int mode);
 		static void Write(int pin, int value);
 		static int Read(int pin);
 	private:
