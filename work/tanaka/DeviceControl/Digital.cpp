@@ -14,5 +14,5 @@ void Digital::Write(int pin, int value)
 
 int Digital::Read(int pin)
 {
-	digitalRead(pin);
+	return digitalRead(pin);
 }

@@ -8,5 +8,5 @@ void Analog::Write(int pin, int value)
 
 int Analog::Read(int pin)
 {
-	analogRead(pin);
+	return analogRead(pin);
 }
