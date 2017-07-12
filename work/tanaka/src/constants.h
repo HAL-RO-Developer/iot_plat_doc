@@ -1,3 +1,8 @@
+/* 
+create by 2017-07-12
+by Tanaka
+*/
+
 /* PORT */
 #define DPORT   ( 0x01 )        /* デジタルポート         */
 #define APORT   ( 0x02 )        /* アナログポート         */
@@ -13,7 +18,12 @@
 #define TX      ( 0    )        /* TX(Serial)           */
 #define RX      ( 2    )        /* RX(Serial)           */
 
+/* MODE */
+#define MODE_AP     ( 0 )       /* APモード             */
+#define MODE_DEVICE ( 1 )       /* デバイスモード        */
+
 /* OTHER */
 #define APSWT   ( 14   )        /* APモードスイッチ      */
 #define SLPR    ( 13   )        /* ステータスランプ (赤) */
 #define SLPG    ( 15   )        /* ステータスランプ (緑) */
+
