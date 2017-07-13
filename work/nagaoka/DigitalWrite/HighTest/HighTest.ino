@@ -1,12 +1,12 @@
 // HighTest.ino
-// DegitalWriteでHighを出力
+// DegitalWrite
 // 引数:なし
 // 戻り値:なし
 // Created 2017/07/12
 // By Hirotaka Nagaoka
 
 // includeファイル
-#include <DeviceControl.h>\
+#include <DeviceControl.h>
 // 定数定義
 #define LED_PIN 16          // LED
 #define LED_HIGH HIGH       // High
@@ -15,15 +15,15 @@
 #define SET_INPUT INPUT     // Input
 
 // Setup
-void setup( ) {
-  // 出力設定
-  Digital::SetMode( LED_PIN, SET_OUTPUT );
-}
+void setup( ) {}
 
 // loop
 void loop( ) {
-  // High出力
-  Digital::Write( LED_PIN, LED_HIGH );
-  // Low出力
-//  Digital::Write( LED_PIN, LED_LOW );
+  digiWrite( LED_PIN, SET_OUTPUT, LED_HIGH );
 }
+
+int digiWrite( int pin, int output, int val ){
+  Digital::SetMode( pin, output );
+  Digital::Write( pin, val );
+}
+
