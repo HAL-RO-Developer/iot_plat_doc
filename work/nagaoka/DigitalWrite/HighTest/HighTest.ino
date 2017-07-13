@@ -5,8 +5,8 @@
 // Created 2017/07/12
 // By Hirotaka Nagaoka
 
-// includeファイル
-#include <DeviceControl.h>
+#include <ArduinoJson.h>
+
 // 定数定義
 #define LED_PIN 16          // LED
 #define LED_HIGH HIGH       // High
@@ -15,15 +15,23 @@
 #define SET_INPUT INPUT     // Input
 
 // Setup
-void setup( ) {}
+void setup( ) {
+  Serial.begin(115200);
+}
 
 // loop
 void loop( ) {
-  digiWrite( LED_PIN, SET_OUTPUT, LED_HIGH );
-}
+  String rtn = "{\"result\":\"NG\"}";
+  rtn = digiWrite( LED_PIN, SET_OUTPUT, LED_HIGH );
+   Serial.println(rtn);
+  StaticJsonBuffer<200> jsonBuffer;
+  JsonObject& root = jsonBuffer.parseObject(rtn);
+  if (!root.success()) {
+    Serial.println("parseObject() failed");
+    return;
+  }
+  String result = root["pin"];
 
-int digiWrite( int pin, int output, int val ){
-  Digital::SetMode( pin, output );
-  Digital::Write( pin, val );
+  Serial.println(result);
 }
 
