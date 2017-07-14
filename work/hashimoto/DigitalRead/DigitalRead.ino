@@ -12,7 +12,7 @@
 void setup() {
   
   Serial.begin(115200);
-  Digital::SetMode(BTN_pin, OUTPUT);
+  Digital::SetMode(BTN_pin, INPUT);
   	
 }
 
