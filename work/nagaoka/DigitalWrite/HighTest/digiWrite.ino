@@ -15,9 +15,9 @@ String digiWrite( int pin, int mode, int val ) {
                 "\",\"value\":\"" +
                 valueStr + 
                 "\"}";
-  if(mode != OUTPUT){              
+  if((mode != OUTPUT) || (flag == 0) ){
     Digital::SetMode( pin, OUTPUT );
-  }  
+  }
   Digital::Write( pin, val );
   return rtn;
 }
