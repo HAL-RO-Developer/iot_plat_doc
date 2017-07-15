@@ -1,4 +1,4 @@
-// Created 2017/07/14		
+// Created 2017/07/15	
 // By Riku Hashimoto
 
 // include
@@ -6,19 +6,21 @@
 #include <ArduinoJson.h>
 
 //定数定義
-# define BTN_pin 13
-#define pinmode OUTPUT
+#define BTN_pin 5
+#define PIN_mode OUTPUT
+
+
 //setup
 void setup() {
   
   Serial.begin(115200);
-  Digital::SetMode(BTN_pin, INPUT);
-  	
+ 
 }
 
 //loop
 void loop() {
- String json =  digitalread(BTN_pin,pinmode); //デジタル入力の結果を受け取る
+ String json =  digitalread(BTN_pin,INPUT); //デジタル入力の結果を受け取る
+   taskkill();//タスクの終了(ダミー)
  StaticJsonBuffer<200> jsonBuffer;// JSON用の固定バッファを確保する(200文字)
  JsonObject& root = jsonBuffer.parseObject(json); // JsonObjectはJSONBufferに格納、パースされた結果を参照保持する。
 // Jsonを型変換する
@@ -32,8 +34,8 @@ Serial.println( value);
 }
  
 //digitalrea
-String digitalread(int pin,int Mode){
-  if(Mode != INPUT){
+String digitalread(int pin,int pin_mode){
+ if(pin_mode != INPUT){
      Digital::SetMode(pin, INPUT);
   }
  int val = Digital::Read(pin);
@@ -42,8 +44,12 @@ String digitalread(int pin,int Mode){
  String valuedata = String(val);
  String rtn = "{\"result\":\"" + resultdata +
                  "\",\"pin\":\"" +pindata +
-                 "\",\"Mode\":\"INPUT" 
                  "\",\"value\":\"" +valuedata + 
                  "\"}";
 return rtn;
 }
+
+String taskkill(){
+  String taskend = "TaskEND";
+ return taskend;
+ }
